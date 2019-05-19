@@ -15,7 +15,7 @@ data = [{
         "date": "3/29/18"
     },
     {
-        "image": "Drink.png",
+        "image": "drink.png",
         "title": "Romo",
         "ingredients": ["1/2 cup grape soda", "1/2 cup sweetened condensed milk", "1/2 cup seltzer or milk"],
         "steps": ["Pour all ingredients into cup", "Stir to combine"],

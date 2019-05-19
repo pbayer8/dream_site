@@ -3,6 +3,7 @@
 
 <head>
     <title>ZZZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/vue"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
@@ -44,13 +45,13 @@
         color: red;
         word-wrap: break-word;
         padding: 20px;
+        text-align: left;
     }
 
     .grid {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
-        padding: 20px 50px;
+        padding: 20px 2vw;
+        text-align: center;
+
     }
 
     .item {
@@ -59,15 +60,18 @@
         border-radius: 7px;
         box-shadow: 3px 3px 9px 0px #ccc;
         transition: all ease .3s;
-        height: 40vw;
         overflow: hidden;
+        display: inline-block;
+        width: 90%;
+        max-width: 800px;
         height: 310px;
+        margin: 20px;
     }
 
     .item:hover {
         box-shadow: 10px 10px 15px 0px #ccc;
     }
-    
+
     .item:hover p {
         mix-blend-mode: normal;
     }
@@ -77,15 +81,11 @@
 <body>
     <div id="app">
         <div class="grid">
-            <div class='' v-for="d in data">
-                <a :href="d.url">
-                    <div class='item'>
+                <a class='item' v-for="d in data" :href="d.url">
                         <img :src="d.image">
                         <p class="font3">{{ d.name }}</p>
                         <!-- <p class="sub">{{ d.description }}</p> -->
-                    </div>
                 </a>
-            </div>
         </div>
     </div>
     <script>

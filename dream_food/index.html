@@ -3,6 +3,7 @@
 
 <head>
     <title>ZZZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/vue"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
@@ -41,9 +42,9 @@
     .grid {
         display: grid;
         grid-gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(calc(290px + 5vw), 1fr));
         grid-auto-rows: 40px;
-        padding: 20px 50px;
+        padding: 20px 4vw;
     }
 
     .item {
