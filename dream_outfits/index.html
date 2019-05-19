@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ZZZ</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="main.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Modak|Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../reset.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /*TODO : Font to Lato*/
+    body {
+        background: #eef1f2;
+    }
+    .sub {
+        font-size: 30px;
+        color: red;
+    }
+    img {
+        height:100vh;
+        position: absolute;
+        bottom:0px;
+    }
+
+    .font3 {
+        font-family: 'Modak', cursive;
+        font-size: 60px;
+        color:red;
+        word-wrap: break-word;
+        padding: 20px;
+        position: fixed;
+        bottom: 0px;
+        left:0px;
+        display: none;
+        /*mix-blend-mode: difference;*/
+        mix-blend-mode: darken;
+    }
+
+    .grid {
+        height: 300vh;
+    }
+
+    .item {
+        transition: all ease .3s;
+    }
+    /*.item:hover {
+        box-shadow: 10px 10px 15px 0px #ccc;
+    }*/
+
+    .item:hover .font3{
+        display: inherit;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div class='item' v-for="d in data">
+                    <p class="font3">{{ d.dream }}</p>
+                    <img :src="d.image"
+                    :style="'left:'+Math.random()*75+'vw;'">
+            </div>
+        </div>
+    </div>
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            data: data
+        }
+    })
+    </script>
+</body>
+
+</html>
