@@ -42,26 +42,21 @@
     p {
         white-space: pre;
         font-size: 110px;
+
         z-index: 999;
         line-height: 81%;
-        mix-blend-mode: color-burn;
+        mix-blend-mode: difference;
         color: red;
     }
 
-    .font1 {
-        font-family: 'Faster One', cursive;
-    }
-
-    .font2 {
-        font-family: 'Barrio', cursive;
+    @media screen and (min-width: 768px) {
+        p {
+            font-size: 80px;
+        }
     }
 
     .font3 {
         font-family: 'Modak', cursive;
-    }
-
-    .font0 {
-        font-family: 'Astloch', cursive;
     }
 
     .item:hover img.sec,

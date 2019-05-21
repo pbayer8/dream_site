@@ -1,6 +1,7 @@
 data = [
 {
-    'name': 'books & rocks',
+    // 'name': 'books & rocks',
+    'name': 'books',
     'url': 'dream_rocks/index.html',
     'description': 'todo',
     'image':'dream_rocks/photos/rock-42.jpg'
