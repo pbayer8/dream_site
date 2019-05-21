@@ -12,7 +12,7 @@
     <script src="js/materials/liquidDistortMaterial.js"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Modak|Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <style>
@@ -123,39 +123,41 @@
             $(document).ready(function() {
                 var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches
                 if (isMobile) {
-                    var material = new Blotter.LiquidDistortMaterial()
+                    setTimeout(() => {//ugly hack
+                        var material = new Blotter.LiquidDistortMaterial()
 
-                    material.uniforms.uSpeed.value = .05
-                    material.uniforms.uVolatility.value = .2
-                    var seed = Math.random()*10
-                    window.addEventListener('scroll', (e) => {
-                        material.uniforms.uSeed.value = seed + window.scrollY / document.body.offsetHeight * 3
-                    })
-                    var blotter = new Blotter(material)
-                    $(".blotter").each(function(index) {
-                        var el = $(this)
-                        var text = new Blotter.Text(el.text(), {
-                            style: el.css('font-style'),
-                            weight: el.css('font-weight'),
-                            family: el.css('font-family'),
-                            size: parseInt(el.css('font-size')),
-                            fill: el.css('color'),
-                            paddingLeft: 100,
-                            paddingRight: 100,
-                            paddingTop: 100,
-                            paddingBottom: 100,
+                        material.uniforms.uSpeed.value = .05
+                        material.uniforms.uVolatility.value = .2
+                        var seed = Math.random() * 10
+                        // window.addEventListener('scroll', (e) => {
+                        //     material.uniforms.uSeed.value = seed + window.scrollY / document.body.offsetHeight * 3
+                        // })
+                        var blotter = new Blotter(material)
+                        $(".blotter").each(function(index) {
+                            var el = $(this)
+                            var text = new Blotter.Text(el.text(), {
+                                style: el.css('font-style'),
+                                weight: el.css('font-weight'),
+                                family: el.css('font-family'),
+                                size: parseInt(el.css('font-size')),
+                                fill: el.css('color'),
+                                paddingLeft: 100,
+                                paddingRight: 100,
+                                paddingTop: 100,
+                                paddingBottom: 100,
+                            })
+                            blotter.addText(text)
+
+
+                            var scope = blotter.forText(text)
+
+                            scope.domElement.className = el.attr('class')
+                            // scope.appendTo(document.body)
+                            el.after(scope.domElement)
+                            el.css('display', 'none')
+                            el.remove()
                         })
-                        blotter.addText(text)
-
-
-                        var scope = blotter.forText(text)
-
-                        scope.domElement.className = el.attr('class')
-                        // scope.appendTo(document.body)
-                        el.after(scope.domElement)
-                        el.css('display', 'none')
-                        el.remove()
-                    })
+                    }, 100)
                 } else {
                     $(".blotter").each(function(index) {
                         var material = new Blotter.LiquidDistortMaterial()
