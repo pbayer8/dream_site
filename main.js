@@ -16,13 +16,13 @@ data = [
     'description': 'todo',
     'image':'dream_gan/photos/banner.png'
 },{
-    'name': 'fashion',
-    'url': 'dream_outfits/index.html',
-    'description': 'todo',
-    'image':'dream_outfits/photos/banner.png'
-},{
     'name': 'recipes',
     'url': 'dream_food/index.html',
     'description': 'todo',
     'image':'dream_food/photos/donut.png'
-},]
+},{
+    'name': 'fashion',
+    'url': 'dream_outfits/index.html',
+    'description': 'todo',
+    'image':'dream_outfits/photos/banner.png'
+}]
