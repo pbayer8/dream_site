@@ -122,46 +122,72 @@
         mounted: function() {
             $(document).ready(function() {
                 var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches
-                $(".blotter").each(function(index) {
-                    var el = $(this)
-                    console.log(el.css('font-size'))
-                    var text = new Blotter.Text(el.text(), {
-                        style: el.css('font-style'),
-                        weight: el.css('font-weight'),
-                        family: el.css('font-family'),
-                        size: parseInt(el.css('font-size')),
-                        fill: el.css('color'),
-                        paddingLeft: 100,
-                        paddingRight: 100,
-                        paddingTop: 100,
-                        paddingBottom: 100,
-                    })
-
+                if (isMobile) {
                     var material = new Blotter.LiquidDistortMaterial()
-                    if (isMobile) {
-                        material.uniforms.uSpeed.value = .05
+
+                    material.uniforms.uSpeed.value = .05
+                    material.uniforms.uVolatility.value = .2
+                    var seed = Math.random()*10
+                    window.addEventListener('scroll', (e) => {
+                        material.uniforms.uSeed.value = seed + window.scrollY / document.body.offsetHeight * 3
+                    })
+                    var blotter = new Blotter(material)
+                    $(".blotter").each(function(index) {
+                        var el = $(this)
+                        var text = new Blotter.Text(el.text(), {
+                            style: el.css('font-style'),
+                            weight: el.css('font-weight'),
+                            family: el.css('font-family'),
+                            size: parseInt(el.css('font-size')),
+                            fill: el.css('color'),
+                            paddingLeft: 100,
+                            paddingRight: 100,
+                            paddingTop: 100,
+                            paddingBottom: 100,
+                        })
+                        blotter.addText(text)
+
+
+                        var scope = blotter.forText(text)
+
+                        scope.domElement.className = el.attr('class')
+                        // scope.appendTo(document.body)
+                        el.after(scope.domElement)
+                        el.css('display', 'none')
+                        el.remove()
+                    })
+                } else {
+                    $(".blotter").each(function(index) {
+                        var material = new Blotter.LiquidDistortMaterial()
+                        material.uniforms.uSpeed.value = .3
                         material.uniforms.uVolatility.value = .2
                         var seed = Math.random() * 10
                         material.uniforms.uSeed.value = seed
-
-                        window.addEventListener('scroll', (e)=> {
-                            material.uniforms.uSeed.value = seed+window.scrollY / document.body.offsetHeight * 3
+                        var el = $(this)
+                        var text = new Blotter.Text(el.text(), {
+                            style: el.css('font-style'),
+                            weight: el.css('font-weight'),
+                            family: el.css('font-family'),
+                            size: parseInt(el.css('font-size')),
+                            fill: el.css('color'),
+                            paddingLeft: 100,
+                            paddingRight: 100,
+                            paddingTop: 100,
+                            paddingBottom: 100,
                         })
-                    } else {
-                        material.uniforms.uSpeed.value = .3
-                        material.uniforms.uVolatility.value = .2
-                        material.uniforms.uSeed.value = Math.random() * 10
-                    }
-                    var blotter = new Blotter(material, { texts: text })
+                        var blotter = new Blotter(material, { texts: text })
 
-                    var scope = blotter.forText(text)
 
-                    scope.domElement.className = el.attr('class')
-                    // scope.appendTo(document.body)
-                    el.after(scope.domElement)
-                    el.css('display', 'none')
-                    el.remove()
-                })
+                        var scope = blotter.forText(text)
+
+                        scope.domElement.className = el.attr('class')
+                        // scope.appendTo(document.body)
+                        el.after(scope.domElement)
+                        el.css('display', 'none')
+                        el.remove()
+                    })
+                }
+
 
             })
 
