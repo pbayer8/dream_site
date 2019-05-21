@@ -49,7 +49,7 @@
 
     .font3 {
         font-family: 'Modak', cursive;
-        font-size: 70px;
+        font-size: 90px;
         color: red;
         word-wrap: break-word;
         padding: 20px;
@@ -120,35 +120,51 @@
             data: data
         },
         mounted: function() {
-            $(".blotter").each(function(index) {
-                var el = $(this)
-                console.log(el.css('font-size'));
-                var text = new Blotter.Text(el.text(), {
-                    style: el.css('font-style'),
-                    weight: el.css('font-weight'),
-                    family: el.css('font-family'),
-                    size: parseInt(el.css('font-size')),
-                    fill: el.css('color'),
-                    paddingLeft: 100,
-                    paddingRight: 100,
-                    paddingTop: 100,
-                    paddingBottom: 100,
-                });
+            $(document).ready(function() {
+                var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches
+                $(".blotter").each(function(index) {
+                    var el = $(this)
+                    console.log(el.css('font-size'))
+                    var text = new Blotter.Text(el.text(), {
+                        style: el.css('font-style'),
+                        weight: el.css('font-weight'),
+                        family: el.css('font-family'),
+                        size: parseInt(el.css('font-size')),
+                        fill: el.css('color'),
+                        paddingLeft: 100,
+                        paddingRight: 100,
+                        paddingTop: 100,
+                        paddingBottom: 100,
+                    })
 
-                var material = new Blotter.LiquidDistortMaterial();
-                material.uniforms.uSpeed.value = .3
-                material.uniforms.uVolatility.value = .2
-                material.uniforms.uSeed.value = Math.random() * 10
-                var blotter = new Blotter(material, { texts: text });
+                    var material = new Blotter.LiquidDistortMaterial()
+                    if (isMobile) {
+                        material.uniforms.uSpeed.value = .05
+                        material.uniforms.uVolatility.value = .2
+                        var seed = Math.random() * 10
+                        material.uniforms.uSeed.value = seed
 
-                var scope = blotter.forText(text);
+                        window.addEventListener('scroll', (e)=> {
+                            material.uniforms.uSeed.value = seed+window.scrollY / document.body.offsetHeight * 3
+                        })
+                    } else {
+                        material.uniforms.uSpeed.value = .3
+                        material.uniforms.uVolatility.value = .2
+                        material.uniforms.uSeed.value = Math.random() * 10
+                    }
+                    var blotter = new Blotter(material, { texts: text })
 
-                scope.domElement.className = el.attr('class')
-                // scope.appendTo(document.body)
-                el.after(scope.domElement)
-                el.css('display', 'none')
-                el.remove()
-            });
+                    var scope = blotter.forText(text)
+
+                    scope.domElement.className = el.attr('class')
+                    // scope.appendTo(document.body)
+                    el.after(scope.domElement)
+                    el.css('display', 'none')
+                    el.remove()
+                })
+
+            })
+
         }
     })
     </script>

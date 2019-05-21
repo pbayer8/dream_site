@@ -48,6 +48,6 @@ data = [{
     'image': 'photos/jumpsuit.png'
 },{
     'date': '4/3/15',
-    'dream': "I see Juliana and she has this large plastic garbage bag with leg holes poked in it so I put that on",
+    'dream': "I see Julianna and she has this large plastic garbage bag with leg holes poked in it so I put that on",
     'image': 'photos/garbage.png'
 } ]
