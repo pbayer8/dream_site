@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>ZZZ</title>
-    <script src="https://unpkg.com/vue"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../reset.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link
+      href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../reset.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <style>
-    #grid {
+      #grid {
         /*display: grid;*/
         width: 100%;
         /*padding: 40px 30%;*/
@@ -19,27 +21,26 @@
         /*grid-column-gap: 10px;*/
         /*grid-row-gap: 125px;*/
         /*place-items: stretch;*/
-    }
+      }
 
-    .item {
+      .item {
         display: block;
         position: relative;
         width: 40%;
         margin: 80px auto;
-        transition: all .3s ease;
-        box-shadow: 3px 3px 9px 0px rgba(0,0,0,.25);
+        transition: all 0.3s ease;
+        box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.25);
+      }
 
-    }
-
-    .item>img {
+      .item > img {
         object-fit: cover;
         width: 100%;
         height: 100%;
         display: block;
-    }
+      }
 
-    .item>img.sec,
-    p {
+      .item > img.sec,
+      p {
         position: absolute;
         top: 0;
         left: 0;
@@ -49,56 +50,67 @@
         mix-blend-mode: difference;
         color: red;
         display: none;
-    }
+      }
 
-    .font3 {
-        font-family: 'Modak', cursive;
+      .font3 {
+        font-family: "Modak", cursive;
         font-size: 40px;
         color: red;
         word-wrap: break-word;
         padding: 20px;
-    }
+      }
 
-    .item:hover p {
+      .item:hover p {
         mix-blend-mode: normal;
         display: inherit;
-    }
-    .item:hover {
+      }
+      .item:hover {
         z-index: 1000;
         width: 95vmin;
-        transform: translate(0px,0px) rotate(0deg) !important;
-        box-shadow: 10px 10px 15px 0px rgba(0,0,0,.25);
-    }
+        transform: translate(0px, 0px) rotate(0deg) !important;
+        box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.25);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <div id="grid">
-            <div class='item' v-for="i in books.length">
-                <img :src="'photos/'+books[i-1]">
-                <p class='font3'>{{labels[i-1]}}</p>
-            </div>
+      <div id="grid">
+        <div class="item" v-for="i in books.length">
+          <img :src="'photos/'+books[i-1]" />
+          <p class="font3">{{labels[i-1]}}</p>
         </div>
+      </div>
     </div>
     <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            books: books,
-            labels: labels
-        }
-    })
-    function centerRand(n){
-        return Math.random()*n*2-n
-    }
-    $(window).on("resize", function() {
-        $(".item").each(function(i)  {
-            $(this).css('transform', 'translate(' + centerRand(30) + '%,' + centerRand(15) + '%) rotate(' + centerRand(6) + 'deg)');
-        })
-        // Invoke the resize event immediately
-    }).resize();
-    </script>
-</body>
+      const { createApp } = Vue;
 
+      const app = createApp({
+        data() {
+          return { books, labels };
+        },
+      });
+      app.mount("#app");
+      function centerRand(n) {
+        return Math.random() * n * 2 - n;
+      }
+      $(window)
+        .on("resize", function () {
+          $(".item").each(function (i) {
+            $(this).css(
+              "transform",
+              "translate(" +
+                centerRand(30) +
+                "%," +
+                centerRand(15) +
+                "%) rotate(" +
+                centerRand(6) +
+                "deg)"
+            );
+          });
+          // Invoke the resize event immediately
+        })
+        .resize();
+    </script>
+  </body>
 </html>

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>ZZZ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://unpkg.com/vue"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
     <script src="main.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../reset.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link
+      href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../reset.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <style>
-    .item {
+      .item {
         display: block;
         position: relative;
         /*transition: all 0.5s ease;*/
-    }
+      }
 
-    .item>img {
+      .item > img {
         object-fit: cover;
         width: 100%;
-        padding:70px 20% 0 0;
+        padding: 70px 20% 0 0;
         /*max-width: 1000px;*/
         height: 100%;
         position: relative;
@@ -27,36 +29,36 @@
         left: -8%;
         filter: drop-shadow(-20px 35px 20px rgba(0, 0, 0, 0.3));
         transition: all 1s ease;
-    }
+      }
 
-    .item:nth-child(even) {
+      .item:nth-child(even) {
         transform: scaleX(-1);
         /*right: -50%;*/
         /*justify-self: right;*/
-    }
-    .item:nth-child(even) p{
+      }
+      .item:nth-child(even) p {
         transform: scaleX(-1);
         /*right: -50%;*/
         /*justify-self: right;*/
-    }
-    /*.item:nth-child(odd)>img {
+      }
+      /*.item:nth-child(odd)>img {
         justify-self: left;
     }*/
-    .item:hover img {
+      .item:hover img {
         left: 0;
-    }
+      }
 
-    /*.item:nth-child(even):hover img {*/
-    /*right: 0;*/
-    /*}*/
-    .item>img.sec,
-    p {
+      /*.item:nth-child(even):hover img {*/
+      /*right: 0;*/
+      /*}*/
+      .item > img.sec,
+      p {
         top: 0;
         left: 0;
         /*transition: all 0.5s ease;*/
-    }
+      }
 
-    p {
+      p {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -66,43 +68,44 @@
         line-height: 81%;
         mix-blend-mode: difference;
         color: red;
-    }
+      }
 
-    .font1 {
-        font-family: 'Faster One', cursive;
-    }
+      .font1 {
+        font-family: "Faster One", cursive;
+      }
 
-    .font2 {
-        font-family: 'Barrio', cursive;
-    }
+      .font2 {
+        font-family: "Barrio", cursive;
+      }
 
-    .font3 {
-        font-family: 'Modak', cursive;
-    }
+      .font3 {
+        font-family: "Modak", cursive;
+      }
 
-    .font0 {
-        font-family: 'Astloch', cursive;
-    }
+      .font0 {
+        font-family: "Astloch", cursive;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <div id="grid">
-            <div class='item' v-for="i in labels.length">
-                <img :src="'photos/'+labels[i-1][0]">
-                <p class='font3'>{{labels[i-1][1]}}</p>
-            </div>
+      <div id="grid">
+        <div class="item" v-for="i in labels.length">
+          <img :src="'photos/'+labels[i-1][0]" />
+          <p class="font3">{{labels[i-1][1]}}</p>
         </div>
+      </div>
     </div>
     <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            labels: labels
-        }
-    })
-    </script>
-</body>
+      const { createApp } = Vue;
 
+      const app = createApp({
+        data() {
+          return { labels };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>

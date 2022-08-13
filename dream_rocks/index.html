@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>ZZZ</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
     <script src="main.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../reset.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link
+      href="https://fonts.googleapis.com/css?family=Astloch|Barrio|Faster+One|Modak"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../reset.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <style>
-    #grid {
+      #grid {
         display: grid;
         width: 100%;
         padding: 40px;
@@ -17,29 +19,29 @@
         grid-column-gap: 10px;
         grid-row-gap: 10px;
         place-items: stretch;
-    }
+      }
 
-    .item {
+      .item {
         display: block;
         position: relative;
-    }
+      }
 
-    .item>img {
+      .item > img {
         object-fit: cover;
         width: 100%;
         height: 100%;
         display: block;
-    }
+      }
 
-    .item>img.sec,
-    p {
+      .item > img.sec,
+      p {
         display: none;
         position: absolute;
         top: 0;
         left: 0;
-    }
+      }
 
-    p {
+      p {
         white-space: pre;
         font-size: 110px;
 
@@ -47,43 +49,44 @@
         line-height: 81%;
         mix-blend-mode: difference;
         color: red;
-    }
+      }
 
-    @media screen and (min-width: 768px) {
+      @media screen and (min-width: 768px) {
         p {
-            font-size: 80px;
+          font-size: 80px;
         }
-    }
+      }
 
-    .font3 {
-        font-family: 'Modak', cursive;
-    }
+      .font3 {
+        font-family: "Modak", cursive;
+      }
 
-    .item:hover img.sec,
-    .item:hover p {
+      .item:hover img.sec,
+      .item:hover p {
         display: block;
-    }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <div id="grid">
-            <div class='item' v-for="i in 100">
-                <img :src="'photos/rock-'+(i*2-1)+'.jpg'">
-                <img class="sec" :src="'photos/rock-'+(i*2)+'.jpg'">
-                <p class='font3'>{{books[i-1]}}</p>
-            </div>
+      <div id="grid">
+        <div class="item" v-for="i in 100">
+          <img :src="'photos/rock-'+(i*2-1)+'.jpg'" />
+          <img class="sec" :src="'photos/rock-'+(i*2)+'.jpg'" />
+          <p class="font3">{{books[i-1]}}</p>
         </div>
+      </div>
     </div>
     <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            books: books
-        }
-    })
-    </script>
-</body>
+      const { createApp } = Vue;
 
+      const app = createApp({
+        data() {
+          return { books };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
 </html>
